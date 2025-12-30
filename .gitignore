@@ -1,0 +1,22 @@
+# Jupyter / IPython
+.ipynb_checkpoints/
+**/.ipynb_checkpoints/
+.ipython/
+.jupyter/
+
+# VS Code
+.vscode/
+
+# macOS
+.DS_Store
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+env/
+.ENV/
+
+# Quarto / misc
+.virtual_documents/
