@@ -128,7 +128,7 @@ your-repo-name/
 ### Where to list this project on your resume:
 - Under a **Projects** section (recommended for students)
 - Include: Project name (linked to GitHub) · Tools used · 1–3 bullet points
-- Example header: `Homelessness Trends Analysis | Python, Pandas, Matplotlib | [GitHub](link)`
+- Example header: `After Covid: Gap in Health Access Widens | Python, Pandas, Matplotlib | [GitHub](link)`
 
 ---
 
