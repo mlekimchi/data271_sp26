@@ -125,27 +125,6 @@ your-repo-name/
 
 ---
 
-# 📋 Resume Bullet Point Guide
-
-*Use this section to help you translate your project into resume language. Delete this section before publishing your README — it's just for your reference.*
-
-When listing this project on your resume, aim for **1–3 bullet points** that follow this formula:
-
-> **Action verb** + **what you did** + **with what tools/data** + **to what effect**
-
-### Examples based on your DATA 271 project:
-
-**Too vague:**
-> - Analyzed homelessness data for a class project
-
-**Much stronger:**
-> - Wrangled and merged 4 real-world datasets (HUD, Census, Zillow) covering 15 years of U.S. homelessness data, identifying a 47% rise in unsheltered populations in California despite stable total counts
-> - Built a reproducible data cleaning pipeline in Python/Pandas to resolve missing values, normalize geographic identifiers, and merge datasets across mismatched reporting boundaries
-> - Conducted exploratory data analysis and created publication-quality visualizations to communicate findings to a non-technical audience
-
-### Useful action verbs for data science projects:
-`Wrangled` · `Cleaned` · `Merged` · `Analyzed` · `Visualized` · `Modeled` · `Explored` · `Identified` · `Built` · `Automated` · `Processed` · `Evaluated` · `Compared`
-
 ### Where to list this project on your resume:
 - Under a **Projects** section (recommended for students)
 - Include: Project name (linked to GitHub) · Tools used · 1–3 bullet points
