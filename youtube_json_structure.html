@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>YouTube API JSON Structure</title>
+  <style>
+    body {
+      font-family: 'Courier New', monospace;
+      background: #1e1e2e;
+      color: #cdd6f4;
+      padding: 30px;
+      font-size: 14px;
+    }
+    h1 {
+      font-family: sans-serif;
+      color: #cba6f7;
+      margin-bottom: 4px;
+      font-size: 20px;
+    }
+    .subtitle {
+      font-family: sans-serif;
+      color: #6c7086;
+      margin-bottom: 24px;
+      font-size: 13px;
+    }
+    .tree {
+      line-height: 1.9;
+    }
+    .node {
+      display: flex;
+      align-items: flex-start;
+      flex-wrap: wrap;
+    }
+    .indent {
+      margin-left: 28px;
+      border-left: 1px dashed #45475a;
+      padding-left: 12px;
+    }
+    .key {
+      color: #89b4fa;
+      font-weight: bold;
+    }
+    .value-str   { color: #a6e3a1; }
+    .value-num   { color: #fab387; }
+    .value-type  { color: #f38ba8; font-style: italic; }
+    .bracket     { color: #cdd6f4; }
+    .label {
+      font-family: sans-serif;
+      font-size: 11px;
+      background: #313244;
+      color: #a6adc8;
+      border-radius: 4px;
+      padding: 1px 7px;
+      margin-left: 10px;
+      vertical-align: middle;
+      white-space: nowrap;
+    }
+    .label.endpoint { background: #1e3a5f; color: #89b4fa; }
+    .label.nested   { background: #2a1f3d; color: #cba6f7; }
+    .label.list     { background: #1f3a2a; color: #a6e3a1; }
+    .label.key-id   { background: #3a2a1f; color: #fab387; }
+    .collapsible {
+      cursor: pointer;
+      user-select: none;
+    }
+    .collapsible::before {
+      content: '▼ ';
+      font-size: 10px;
+      color: #6c7086;
+    }
+    .collapsible.collapsed::before {
+      content: '▶ ';
+    }
+    .collapsible-content.hidden {
+      display: none;
+    }
+    .legend {
+      font-family: sans-serif;
+      font-size: 12px;
+      margin-bottom: 20px;
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    hr {
+      border: none;
+      border-top: 1px solid #313244;
+      margin: 20px 0;
+    }
+  </style>
+</head>
+<body>
+
+<h1>YouTube API — JSON Response Structure</h1>
+<p class="subtitle">channels endpoint · part=snippet · forHandle=CalPolyHumboldt &nbsp;|&nbsp; Click any section to collapse/expand</p>
+
+<div class="legend">
+  <div class="legend-item"><span class="label endpoint">endpoint layer</span> top-level API metadata</div>
+  <div class="legend-item"><span class="label list">list</span> array — use [0], [1], … to index</div>
+  <div class="legend-item"><span class="label nested">nested dict</span> another dictionary inside</div>
+  <div class="legend-item"><span class="label key-id">key / id</span> useful for next requests</div>
+</div>
+<hr>
+
+<div class="tree">
+
+  <!-- Root -->
+  <div class="node"><span class="bracket">{</span></div>
+
+  <div class="indent">
+
+    <!-- kind -->
+    <div class="node">
+      <span class="key">'kind'</span><span class="bracket">: </span>
+      <span class="value-str">'youtube#channelListResponse'</span>
+      <span class="label endpoint">endpoint layer</span>
+    </div>
+
+    <!-- etag -->
+    <div class="node">
+      <span class="key">'etag'</span><span class="bracket">: </span>
+      <span class="value-str">'NANAf4I7ctO...'</span>
+      <span class="label">cache fingerprint</span>
+    </div>
+
+    <!-- pageInfo -->
+    <div class="node collapsible" onclick="toggle(this)">
+      <span class="key">'pageInfo'</span><span class="bracket">: {</span>
+      <span class="label nested">nested dict</span>
+    </div>
+    <div class="indent collapsible-content">
+      <div class="node"><span class="key">'totalResults'</span><span class="bracket">: </span><span class="value-num">1</span></div>
+      <div class="node"><span class="key">'resultsPerPage'</span><span class="bracket">: </span><span class="value-num">5</span></div>
+    </div>
+    <div class="node"><span class="bracket">}</span></div>
+
+    <!-- items -->
+    <div class="node collapsible" onclick="toggle(this)">
+      <span class="key">'items'</span><span class="bracket">: [</span>
+      <span class="label list">list — one item per channel</span>
+    </div>
+    <div class="indent collapsible-content">
+
+      <!-- items[0] -->
+      <div class="node collapsible" onclick="toggle(this)">
+        <span class="bracket">[0] {</span>
+        <span class="label">payload['items'][0]</span>
+      </div>
+      <div class="indent collapsible-content">
+
+        <div class="node">
+          <span class="key">'kind'</span><span class="bracket">: </span>
+          <span class="value-str">'youtube#channel'</span>
+        </div>
+
+        <div class="node">
+          <span class="key">'etag'</span><span class="bracket">: </span>
+          <span class="value-str">'Ha1NwOtByif...'</span>
+        </div>
+
+        <div class="node">
+          <span class="key">'id'</span><span class="bracket">: </span>
+          <span class="value-str">'UCg7Fdhrmwi8ZqakqiO3xPkg'</span>
+          <span class="label key-id">← channel_id for next request</span>
+        </div>
+
+        <!-- snippet -->
+        <div class="node collapsible" onclick="toggle(this)">
+          <span class="key">'snippet'</span><span class="bracket">: {</span>
+          <span class="label nested">nested dict · requested via part='snippet'</span>
+        </div>
+        <div class="indent collapsible-content">
+
+          <div class="node"><span class="key">'title'</span><span class="bracket">: </span><span class="value-str">'Cal Poly Humboldt'</span></div>
+          <div class="node"><span class="key">'description'</span><span class="bracket">: </span><span class="value-str">'Cal Poly Humboldt is where...'</span></div>
+          <div class="node"><span class="key">'customUrl'</span><span class="bracket">: </span><span class="value-str">'@calpolyhumboldt'</span></div>
+          <div class="node"><span class="key">'publishedAt'</span><span class="bracket">: </span><span class="value-str">'2007-05-09T18:48:38Z'</span></div>
+          <div class="node"><span class="key">'country'</span><span class="bracket">: </span><span class="value-str">'US'</span></div>
+
+          <!-- thumbnails -->
+          <div class="node collapsible" onclick="toggle(this)">
+            <span class="key">'thumbnails'</span><span class="bracket">: {</span>
+            <span class="label nested">nested dict</span>
+          </div>
+          <div class="indent collapsible-content">
+
+            <div class="node collapsible" onclick="toggle(this)">
+              <span class="key">'default'</span><span class="bracket">: {</span>
+              <span class="label">88 × 88 px</span>
+            </div>
+            <div class="indent collapsible-content">
+              <div class="node"><span class="key">'url'</span><span class="bracket">: </span><span class="value-str">'https://yt3.ggpht.com/...'</span></div>
+              <div class="node"><span class="key">'width'</span><span class="bracket">: </span><span class="value-num">88</span></div>
+              <div class="node"><span class="key">'height'</span><span class="bracket">: </span><span class="value-num">88</span></div>
+            </div>
+            <div class="node"><span class="bracket">}</span></div>
+
+            <div class="node collapsible" onclick="toggle(this)">
+              <span class="key">'medium'</span><span class="bracket">: {</span>
+              <span class="label">240 × 240 px</span>
+            </div>
+            <div class="indent collapsible-content">
+              <div class="node"><span class="key">'url'</span><span class="bracket">: </span><span class="value-str">'https://yt3.ggpht.com/...'</span></div>
+              <div class="node"><span class="key">'width'</span><span class="bracket">: </span><span class="value-num">240</span></div>
+              <div class="node"><span class="key">'height'</span><span class="bracket">: </span><span class="value-num">240</span></div>
+            </div>
+            <div class="node"><span class="bracket">}</span></div>
+
+            <div class="node collapsible" onclick="toggle(this)">
+              <span class="key">'high'</span><span class="bracket">: {</span>
+              <span class="label">800 × 800 px</span>
+            </div>
+            <div class="indent collapsible-content">
+              <div class="node"><span class="key">'url'</span><span class="bracket">: </span><span class="value-str">'https://yt3.ggpht.com/...'</span></div>
+              <div class="node"><span class="key">'width'</span><span class="bracket">: </span><span class="value-num">800</span></div>
+              <div class="node"><span class="key">'height'</span><span class="bracket">: </span><span class="value-num">800</span></div>
+            </div>
+            <div class="node"><span class="bracket">}</span></div>
+
+          </div>
+          <div class="node"><span class="bracket">}</span>&nbsp;<span style="color:#6c7086;font-size:12px;">// end thumbnails</span></div>
+
+          <!-- localized -->
+          <div class="node collapsible" onclick="toggle(this)">
+            <span class="key">'localized'</span><span class="bracket">: {</span>
+            <span class="label nested">nested dict · translated metadata</span>
+          </div>
+          <div class="indent collapsible-content">
+            <div class="node"><span class="key">'title'</span><span class="bracket">: </span><span class="value-str">'Cal Poly Humboldt'</span></div>
+            <div class="node"><span class="key">'description'</span><span class="bracket">: </span><span class="value-str">'Cal Poly Humboldt is where...'</span></div>
+          </div>
+          <div class="node"><span class="bracket">}</span>&nbsp;<span style="color:#6c7086;font-size:12px;">// end localized</span></div>
+
+        </div>
+        <div class="node"><span class="bracket">}</span>&nbsp;<span style="color:#6c7086;font-size:12px;">// end snippet</span></div>
+
+      </div>
+      <div class="node"><span class="bracket">}</span>&nbsp;<span style="color:#6c7086;font-size:12px;">// end items[0]</span></div>
+
+    </div>
+    <div class="node"><span class="bracket">]</span>&nbsp;<span style="color:#6c7086;font-size:12px;">// end items</span></div>
+
+  </div>
+
+  <div class="node"><span class="bracket">}</span>&nbsp;<span style="color:#6c7086;font-size:12px;">// end payload</span></div>
+
+</div>
+
+<hr>
+<div style="font-family:sans-serif; font-size:13px; color:#6c7086; margin-top: 16px;">
+  <strong style="color:#a6adc8;">How to navigate this in Python:</strong><br><br>
+  <code style="color:#89b4fa;">payload<span style="color:#cdd6f4;">['items'][0]['id']</span></code> → channel ID (use in next request)<br>
+  <code style="color:#89b4fa;">payload<span style="color:#cdd6f4;">['items'][0]['snippet']['title']</span></code> → channel name<br>
+  <code style="color:#89b4fa;">payload<span style="color:#cdd6f4;">['items'][0]['snippet']['publishedAt']</span></code> → date channel was created<br>
+  <code style="color:#89b4fa;">payload<span style="color:#cdd6f4;">['items'][0]['snippet']['thumbnails']['high']['url']</span></code> → high-res thumbnail URL
+</div>
+
+<script>
+  function toggle(el) {
+    el.classList.toggle('collapsed');
+    const content = el.nextElementSibling;
+    if (content && content.classList.contains('collapsible-content')) {
+      content.classList.toggle('hidden');
+    }
+  }
+</script>
+
+</body>
+</html>
